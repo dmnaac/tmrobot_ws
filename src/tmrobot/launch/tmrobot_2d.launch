@@ -1,0 +1,24 @@
+<launch>
+    <!-- Start Lidar Node -->
+    <include file="$(find rplidar_ros)/launch/rplidar_s1.launch"/>
+
+    <!-- Start Cartographer Node -->
+    <node name="cartographer_node" pkg="cartographer_ros"
+          type="cartographer_node" args="
+                -configuration_directory $(find cartographer_ros)/configuration_files
+                -configuration_basename tmrobot_2d.lua"
+          output="screen">
+          <remap from="scan" to="scan_master" />
+    </node>
+
+    <!-- Generate ROS Map -->
+    <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+          type="cartographer_occupancy_grid_node" args="-resolution 0.05">
+    </node>
+
+    <!-- Start RVIZ -->
+    <node name="rviz" pkg="rviz" type="rviz" required="true"
+          args="-d $(find cartographer_ros)/configuration_files/tmrobot_2d.rviz">
+    </node>
+    
+</launch>
