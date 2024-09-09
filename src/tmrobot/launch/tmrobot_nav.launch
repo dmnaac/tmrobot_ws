@@ -1,6 +1,6 @@
 <launch>
   <!-- Map root and name-->
-  <arg name="map_root" default="$(env HOME)/cartographer_ws/map/" />
+  <arg name="map_root" default="$(env HOME)/Maps/" />
   <arg name="map_date_time" default="2024-09-03_14-58-53" />
 
   <arg name="pbstream_file" default="$(arg map_root)/$(arg map_date_time)/$(arg map_date_time).pbstream" />
@@ -10,17 +10,19 @@
   <!-- Start lidar -->
     <include file="$(find rplidar_ros)/launch/rplidar_s1.launch"/>
 
-  <!-- Run move_base
+  <!-- Run move_base -->
     <node pkg="move_base" type="move_base" name="move_base">
-        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="global_costmap" />
-        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="local_costmap" />
-        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/global_costmap_params.yaml" command="load" />
-        <rosparam file="$(find wpb_home_tutorials)/nav_lidar/local_costmap_params.yaml" command="load" />
         <param name="base_global_planner" value="global_planner/GlobalPlanner" /> 
-        <param name="base_local_planner" value="wpbh_local_planner/WpbhLocalPlanner" />
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+        <rosparam file="$(find tmrobot)/configuration_files/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find tmrobot)/configuration_files/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find tmrobot)/configuration_files/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find tmrobot)/configuration_files/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find tmrobot)/configuration_files/move_base_params.yaml" command="load" />
+        <rosparam file="$(find tmrobot)/configuration_files/dwa_local_planner_params.yaml" command="load" />
+        <rosparam file="$(find tmrobot)/configuration_files/base_global_planner_params.yaml" command="load" />
         <remap from="cmd_vel" to="cmd_vel_x" />
     </node>
-  -->
 
   <!-- Start map_server --> 
   <node name="map_server" pkg="map_server" type="map_server"
