@@ -10,8 +10,8 @@ GlobalPlanner:
   publish_scale: 100
   planner_costmap_publish_frequency: 0.0
   lethal_cost: 253
-  neutral_cost: 50
-  cost_factor: 3.0
+  neutral_cost: 66
+  cost_factor: 0.55
   publish_potential: true
   visualize_potential: true
   depend_obstacle_update: true
