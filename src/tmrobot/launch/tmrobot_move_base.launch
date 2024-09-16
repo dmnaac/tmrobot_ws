@@ -1,3 +1,4 @@
+<launch>
 <!-- Run move_base -->
     <node pkg="move_base" type="move_base" name="move_base">
         <param name="base_global_planner" value="global_planner/GlobalPlanner" /> 
@@ -11,3 +12,4 @@
         <rosparam file="$(find tmrobot)/configuration_files/base_global_planner_params.yaml" command="load" />
         <remap from="cmd_vel" to="cmd_vel_x" />
     </node>
+</launch>

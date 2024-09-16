@@ -17,11 +17,21 @@ obstacle_layer:
   raytrace_range: 3.0
   observation_sources: scan_master point_cloud
   scan_master: {data_type: LaserScan, sensor_frame: laser, topic: /scan_master, observation_persistence: 0.0, marking: true, clearing: true}
-  point_cloud: {data_type: PointCloud2, sensor_frame: camera_link , topic: /camera/depth/points, observation_persistence: 0.0, marking: true, clearing: true}
+  point_cloud: {data_type: PointCloud2, sensor_frame: camera_depth_optical_frame , topic: /camera/depth/points, observation_persistence: 0.0, marking: true, clearing: true}
 
 static_layer:
   enabled: true
   map_topic: /map
+
+global_inflation_layer:
+  enabled: true
+  cost_scaling_factor: 1.0
+  inflation_radius: 2.0
+
+local_inflation_layer:
+  enabled: true
+  cost_scaling_factor: 0.15
+  inflation_radius: 5.0
 
 plugins:
   - {name: static_layer, type: "costmap_2d::StaticLayer"}
