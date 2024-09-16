@@ -15,18 +15,9 @@ obstacle_layer:
   track_unknown_space: false
   obstacle_range: 2.5
   raytrace_range: 3.0
-  observation_sources: scan_master
-  scan_master: {data_type: LaserScan, sensor_frame: laser, topic: scan_master, observation_persistence: 0.0, marking: true, clearing: true}
-
-global_inflation_layer:
-  enabled: true
-  cost_scaling_factor: 1.0
-  inflation_radius: 0.5
-
-local_inflation_layer:
-  enabled: true
-  cost_scaling_factor: 1.0
-  inflation_radius: 0.5
+  observation_sources: scan_master point_cloud
+  scan_master: {data_type: LaserScan, sensor_frame: laser, topic: /scan_master, observation_persistence: 0.0, marking: true, clearing: true}
+  point_cloud: {data_type: PointCloud2, sensor_frame: camera_link , topic: /camera/depth/points, observation_persistence: 0.0, marking: true, clearing: true}
 
 static_layer:
   enabled: true
