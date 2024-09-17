@@ -3,10 +3,10 @@
 # Get the current date and time
 current_date_time=$(date +"%Y-%m-%d_%H-%M-%S")
 
-map_root="${HOME}/cartographer_ws/map"
+map_root="${HOME}/Workspace/map"
 map_name="$current_date_time"
 
-lua_root="${HOME}/cartographer_ws/cartographer_ros_ws/src/
+lua_root="${HOME}/Workspace/cartographer_ws/cartographer_ros_ws/src/
          cartographer_ros/cartographer_ros/configuration_files"
 lua_name="tmrobot_2d.lua"
 

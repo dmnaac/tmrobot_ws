@@ -4,7 +4,7 @@
   <arg name="map_date_time" default="2024-09-03_14-58-53" />
 
   <arg name="pbstream_file" default="$(arg map_root)/$(arg map_date_time)/$(arg map_date_time).pbstream" />
-  <arg name="yaml_file" value="$(arg map_root)/$(arg map_date_time)/$(arg map_date_time).yaml" />
+  <arg name="yaml_file" default="$(arg map_root)/$(arg map_date_time)/$(arg map_date_time).yaml" />
   <arg name="load_state_filename" default="$(arg pbstream_file)"/>
 
   <!-- Start lidar -->
