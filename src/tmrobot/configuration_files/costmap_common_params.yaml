@@ -24,30 +24,31 @@ obstacle_layer:
     marking: true, 
     clearing: true
     }
+  
   point_cloud: {
     data_type: PointCloud2, 
-    sensor_frame: camera_depth_optical_frame, 
-    topic: /camera/depth/points, 
+    sensor_frame: camera_link, 
+    topic: /camera/depth/color/points, 
     observation_persistence: 0.0, 
     marking: true, 
     clearing: true,
-    max_obstacle_height: 1.5,
-    min_obstacle_height: 0.02
+    max_obstacle_height: 0.5,
+    min_obstacle_height: 0.2
     }
-
-static_layer:
-  enabled: true
-  map_topic: /map
 
 global_inflation_layer:
   enabled: true
   cost_scaling_factor: 1.0
-  inflation_radius: 2.0
+  inflation_radius: 0.5
 
 local_inflation_layer:
   enabled: true
   cost_scaling_factor: 0.15
-  inflation_radius: 5.0
+  inflation_radius: 0.5
+
+static_layer:
+  enabled: true
+  map_topic: /map
 
 plugins:
   - {name: static_layer, type: "costmap_2d::StaticLayer"}
