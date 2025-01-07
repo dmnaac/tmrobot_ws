@@ -1,5 +1,5 @@
 .DS_Store
 /build
 /devel
-/.catkin_tools
+.catkin_tools
 /logs
