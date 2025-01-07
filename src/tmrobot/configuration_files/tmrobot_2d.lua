@@ -7,9 +7,9 @@ options = {
 
     map_frame = "map",
     tracking_frame = "gyro_link",
-    published_frame = "base_footprint",
+    published_frame = "rtabmap_odom",
     odom_frame = "odom",
-    provide_odom_frame = true,
+    provide_odom_frame = false,
     publish_frame_projected_to_2d = false,
     use_pose_extrapolator = false,
 

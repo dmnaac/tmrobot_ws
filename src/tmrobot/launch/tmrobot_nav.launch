@@ -1,31 +1,27 @@
 <launch>
-  <!-- Map root and name-->
-  <arg name="map_root" default="$(env HOME)/Maps/" />
-  <arg name="map_date_time" default="2024-09-03_14-58-53" />
+    <!-- Map root and name-->
+    <arg name="map_root" default="$(env HOME)/Maps/" />
+    <arg name="map_date_time" default="2024-09-03_14-58-53" />
 
-  <arg name="pbstream_file" default="$(arg map_root)/$(arg map_date_time)/$(arg map_date_time).pbstream" />
-  <arg name="yaml_file" default="$(arg map_root)/$(arg map_date_time)/$(arg map_date_time).yaml" />
-  <arg name="load_state_filename" default="$(arg pbstream_file)"/>
+    <arg name="pbstream_file" default="$(arg map_root)/$(arg map_date_time)/$(arg map_date_time).pbstream" />
+    <arg name="yaml_file" default="$(arg map_root)/$(arg map_date_time)/$(arg map_date_time).yaml" />
+    <arg name="load_state_filename" default="$(arg pbstream_file)"/>
 
-  <!-- Start lidar -->
+    <!-- Start lidar -->
     <include file="$(find rplidar_ros)/launch/rplidar_s1.launch"/>
 
-  <!-- Start map_server --> 
-  <node name="map_server" pkg="map_server" type="map_server"
-      args="$(arg yaml_file)" /> 
+    <!-- Start map_server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg yaml_file)" />
 
-  <!-- Start cartographer -->
-  <node name="cartographer_node" pkg="cartographer_ros"
-      type="cartographer_node" args="
-          -configuration_directory $(find cartographer_ros)/configuration_files
+    <!-- Start cartographer -->
+    <node name="cartographer_node" pkg="cartographer_ros" type="cartographer_node" args="
+          -configuration_directory $(find tmrobot)/configuration_files
           -configuration_basename tmrobot_nav.lua
-          -load_state_filename $(arg load_state_filename)"
-      output="screen">
-      <remap from="scan" to="scan_master" />
-  </node>
+          -load_state_filename $(arg load_state_filename)" output="screen">
+        <remap from="scan" to="scan_master" />
+    </node>
 
-  <!-- Start rviz -->
-  <node name="rviz" pkg="rviz" type="rviz" required="true"
-      args="-d $(find tmrobot)/configuration_files/tmrobot_nav.rviz" />
+    <!-- Start rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find tmrobot)/configuration_files/tmrobot_nav.rviz" />
 
 </launch>
