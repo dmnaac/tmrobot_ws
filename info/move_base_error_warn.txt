@@ -1,0 +1,4 @@
+[ERROR] [1736329063.877804094]: TF Exception that should never happen for sensor frame: laser, cloud frame: laser, Lookup would require extrapolation 1.357132693s into the past.  Requested time 1736329052.687906742 but the earliest data is at time 1736329054.045039415, when looking up transform from frame [laser] to frame [map]
+
+[ WARN] [1736328728.702306043]: Map update loop missed its desired rate of 5.0000Hz... the loop actually took 0.5487 seconds
+[ WARN] [1736328728.750505895]: Control loop missed its desired rate of 10.0000Hz... the loop actually took 0.5713 seconds

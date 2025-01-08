@@ -1,14 +1,14 @@
 <launch>
     <!-- Map root and name-->
     <arg name="map_root" default="$(env HOME)/Maps/" />
-    <arg name="map_date_time" default="2024-09-03_14-58-53" />
+    <arg name="map_date_time" default="2025-01-08_16-58-35" />
 
     <arg name="pbstream_file" default="$(arg map_root)/$(arg map_date_time)/$(arg map_date_time).pbstream" />
     <arg name="yaml_file" default="$(arg map_root)/$(arg map_date_time)/$(arg map_date_time).yaml" />
     <arg name="load_state_filename" default="$(arg pbstream_file)"/>
 
     <!-- Start lidar -->
-    <include file="$(find rplidar_ros)/launch/rplidar_s1.launch"/>
+    <!-- <include file="$(find rplidar_ros)/launch/rplidar_s1.launch"/> -->
 
     <!-- Start map_server -->
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg yaml_file)" />
@@ -19,6 +19,8 @@
           -configuration_basename tmrobot_nav.lua
           -load_state_filename $(arg load_state_filename)" output="screen">
         <remap from="scan" to="scan_master" />
+        <remap from="imu" to="imu" />
+        <remap from="odom" to="rtabmap/odom" />
     </node>
 
     <!-- Start rviz -->
